@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Logeo</title>
+    <!-- prevent extraneous favicon requests -->
+    <link rel="icon" href="data:,">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- link rel="stylesheet" href="introjs.css" -->
+
+    <script type="text/javascript" src="logeo.js"></script>
+    <script type="text/javascript" src="constants.js"></script>
+    <!-- script type="text/javascript" src="intro.min.js"></script -->
+</head>
+
+<body>
+
+<div align="center">
+    <!--
+    <div id="links" class="linkstop">
+        <a href="index.html">home</a> &nbsp;|&nbsp; <a href="about.html">about</a> &nbsp;|&nbsp; <a href="tutorial.html">getting started</a> &nbsp;|&nbsp; <a href="faq.html">FAQ</a> &nbsp;|&nbsp; <a href="contact.html">contact</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    -->
+    <div ><img id="decal" class="decal" src="decal.png" alt=""></div>
+
+    <div id="intro" class="intro">
+        create a 3D logo from your 2D logo!<br><input class="inputfile" type="file" id="choosefile">
+        <p>
+        <label class="inputbutton" for="choosefile" >Choose a file</label>
+        </p>
+    </div>
+
+    <div id="result" class="result">
+        <table width="500px">
+            <tr><td>Your logo:<br></td>
+                <td>Your logo in 3D:<br></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    window.addEventListener('load', function () {
+        var app = new window.Logeo();
+
+        app.start();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+:root {
+    --logoHeight: 250px;
+    --paddingTop: 500px;
+
+    font: 22px Arial, Sans-Serif;
+    color: #2982bf;
+    padding: 15px;
+}
+
+body {
+    background: #ffffff;
+}
+
+.maintext {
+    width: 500px;
+
+    color: dodgerblue;
+    font: 20px Arial, Sans-Serif;
+
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, -0%);
+}
+
+.decal {
+    height: 450px;
+    padding-top: 0px;
+
+    opacity: 90%;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+
+}
+
+#intro {
+    display: block;
+    text-align: center;
+
+    color: #2c8acb;
+    font: 20px Arial, Sans-Serif;
+    height: 100px;
+
+    white-space: nowrap;
+
+    padding-top: var(--paddingTop);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+
+}
+
+#result {
+    display: none;
+    text-align: center;
+
+    color: rgba(83, 112, 113, 0.8);
+    font: 20px Arial, Sans-Serif;
+    height: 100px;
+
+    white-space: nowrap;
+
+    padding-top: var(--paddingTop);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+
+}
+
+.inputbutton {
+    font: 18px Arial, Sans-Serif;
+
+    padding: 15px 32px;
+
+    background-color: #35c4d5;
+    color: white;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+
+    transition-duration: 0.4s;
+
+    position: relative;
+    horiz-align: center;
+    bottom: 0px;
+}
+
+.inputbutton:hover {
+    background-color: #2fb0bf;
+    color: white;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}

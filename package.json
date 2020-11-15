@@ -1,0 +1,36 @@
+{
+  "name": "Logeo",
+  "version": "1.0.0",
+  "description": "A tool for generating 3D logos from your 2D logos.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node_modules/.bin/webpack -w",
+    "release": "node_modules/.bin/webpack --env.release",
+    "website": "node_modules/.bin/webpack --env.website",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terescape/Logeo.git"
+  },
+  "keywords": [
+    "3D"
+  ],
+  "author": "camberley crick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/terescape/Logeo/issues"
+  },
+  "homepage": "https://github.com/terescape/Logeo#readme",
+  "dependencies": {
+    "intro.js": "^2.9.3"
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^4.1.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-obfuscator": "^1.12.1",
+    "ws": "^3.3.3"
+  }
+}

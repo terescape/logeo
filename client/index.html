@@ -12,6 +12,7 @@
     <script type="text/javascript" src="logeo.js"></script>
     <script type="text/javascript" src="constants.js"></script>
     <!-- script type="text/javascript" src="intro.min.js"></script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.module.js" integrity="sha512-PXon5ZCv1wqUONrT5oeawVTJ+Z579HYAHMQOp7IjnJnnZPIxba28Fus++EGc3m/oIXSQIRW3d5b0d7mGkmkxKw==" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,16 +26,20 @@
     <div ><img id="decal" class="decal" src="decal.png" alt=""></div>
 
     <div id="intro" class="intro">
-        create a 3D logo from your 2D logo!<br><input class="inputfile" type="file" id="choosefile">
+        Transform your 2D logos to 3D!<br><input class="inputfile" type="file" id="choosefile">
         <p>
         <label class="inputbutton" for="choosefile" >Choose a file</label>
         </p>
     </div>
 
     <div id="result" class="result">
-        <table width="500px">
-            <tr><td>Your logo:<br></td>
-                <td>Your logo in 3D:<br></td>
+        <table width="600px">
+            <tr><td>Your logo:<br><img id="oldlogo" src="" width="300px"></td>
+                <td width="300">
+                    Your logo in 3D:<br><img id="newlogo" src=""></br>
+                    <div id="svgdiv"></div>
+                    <div id="container"></div>
+                </td>
             </tr>
         </table>
     </div>
@@ -48,6 +53,8 @@
         app.start();
     });
 </script>
+
+
 
 </body>
 </html>

@@ -62,7 +62,7 @@ body {
 
     white-space: nowrap;
 
-    padding-top: var(--paddingTop);
+    padding-top: 350px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -0%);
@@ -74,7 +74,7 @@ body {
 
     padding: 15px 32px;
 
-    background-color: #35c4d5;
+    background-color: #35a7f6;
     color: white;
     border: none;
     text-decoration: none;
@@ -89,7 +89,7 @@ body {
 }
 
 .inputbutton:hover {
-    background-color: #2fb0bf;
+    background-color: #2b88c9;
     color: white;
 }
 .inputfile {

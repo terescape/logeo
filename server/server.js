@@ -20,8 +20,8 @@ const serverConfig = {
     key: fs.readFileSync('keys/privkey1.pem'),
     cert: fs.readFileSync('keys/fullchain1.pem'),
 
-    //key: fs.readFileSync('/etc/letsencrypt/live/www.idlemined.com/privkey.pem'),
-    //cert: fs.readFileSync('/etc/letsencrypt/live/www.idlemined.com/fullchain.pem'),
+    //key: fs.readFileSync('/etc/letsencrypt/live/www.logeo.co/privkey.pem'),
+    //cert: fs.readFileSync('/etc/letsencrypt/live/www.logeo.co/fullchain.pem'),
 };
 
 
@@ -114,6 +114,6 @@ console.log('Server running.'
 // Separate server to redirect from http to https
 http.createServer(function (req, res) {
     //console.log(req.headers['host']+req.url);
-    res.writeHead(301, {"Location": 'https://localhost' + req.url});
+    res.writeHead(301, {"Location": 'https://www.logeo.co' + req.url});
     res.end();
 }).listen(HTTP_PORT);

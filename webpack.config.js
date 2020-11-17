@@ -18,6 +18,12 @@ module.exports = {
         minimize: false,
     },
 
+    externalsType: 'script',
+    externals: {
+        threejs: ['https://unpkg.com/three@0.119.0/build/three.module.js'],
+    },
+
+
     /*
     plugins: [
         new WebpackObfuscator ({

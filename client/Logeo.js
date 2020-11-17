@@ -1,6 +1,8 @@
 import Utils from 'misc/Utils';
 import User from 'user/User';
 
+//import * as THREE from 'https://unpkg.com/three@0.119.0/build/three.module.js';
+
 'use strict'
 
 
@@ -111,6 +113,9 @@ class Logeo {
 
             const reader = new FileReader();
             reader.readAsDataURL(selectedFile);
+
+            //const group = new THREE.Group();
+            //loadSVGObject(null);
 
             reader.onload = function () {
 

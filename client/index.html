@@ -12,7 +12,6 @@
     <script type="text/javascript" src="logeo.js"></script>
     <script type="text/javascript" src="constants.js"></script>
     <!-- script type="text/javascript" src="intro.min.js"></script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.module.js" integrity="sha512-PXon5ZCv1wqUONrT5oeawVTJ+Z579HYAHMQOp7IjnJnnZPIxba28Fus++EGc3m/oIXSQIRW3d5b0d7mGkmkxKw==" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -33,11 +32,17 @@
     </div>
 
     <div id="result" class="result">
-        <table width="600px">
-            <tr><td>Your logo:<br><img id="oldlogo" src="" width="300px"></td>
-                <td width="300">
-                    Your logo in 3D:<br><img id="newlogo" src=""></br>
-                    <div id="svgdiv"></div>
+        <table width="800px" border="1px">
+            <tr>
+                <td valign="top" width="500">Your logo:<br></td>
+                <td  valign="top">Your logo in 3D:<br></td>
+            </tr>
+            <tr>
+                <td valign="center">
+                    <img id="oldlogo" src="" width="300px"></td>
+                <td valign="center">
+                    <img id="newlogo" src=""></br>
+                    <div id="svgdiv" ></div>
                     <div id="container"></div>
                 </td>
             </tr>
@@ -54,7 +59,7 @@
     });
 </script>
 
-
+<script type="module" src="./3d_scene.js"></script>
 
 </body>
 </html>

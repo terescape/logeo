@@ -51,6 +51,9 @@ const handleRequest = function (request, response) {
     } else if (request.url.endsWith('.png')) {
         response.writeHead(200, { 'Content-Type': 'image/png' });
         response.end(fs.readFileSync('img' + request.url));
+    } else if (request.url === '/svg_test.svg') {
+        response.writeHead(200, { 'Content-Type': 'image/svg+xml' });
+        response.end(fs.readFileSync('img/svg_test.svg'));
     } else if (request.url === '/about.html') {
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.end(fs.readFileSync('client/about.html'));

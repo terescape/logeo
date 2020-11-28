@@ -12,6 +12,7 @@
     <script type="text/javascript" src="logeo.js"></script>
     <script type="text/javascript" src="constants.js"></script>
     <!-- script type="text/javascript" src="intro.min.js"></script -->
+
 </head>
 
 <body>
@@ -32,7 +33,7 @@
     </div>
 
     <div id="result" class="result">
-        <table width="800px" border="1px">
+        <table width="800px" border="0px">
             <tr>
                 <td valign="top" width="500">Your logo:<br></td>
                 <td  valign="top">Your logo in 3D:<br></td>
@@ -42,8 +43,11 @@
                     <img id="oldlogo" src="" width="300px"></td>
                 <td valign="center">
                     <img id="newlogo" src=""></br>
-                    <div id="svgdiv" ></div>
+
+
                     <div id="container"></div>
+                    <div id="overlay"><img id="loading" src="loading.gif" width="200"></div>
+                    <div id="hidden"></div>
                 </td>
             </tr>
         </table>

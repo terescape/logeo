@@ -127,6 +127,9 @@ class Logeo {
                 console.log("image width: " + document.getElementById('oldlogo').width);
 
                 if (debug) console.log('decoded data');
+
+                if (!API)
+                    return;
 // TESTING
                 //let enc = 'PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMjAwMC4wMDAwMDBwdCIgaGVpZ2h0PSIyMDAwLjAwMDAwMHB0IiB2aWV3Qm94PSIwIDAgMjAwMC4wMDAwMDAgMjAwMC4wMDAwMDAiCiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0Ij4KCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDIwMDAuMDAwMDAwKSBzY2FsZSgwLjEwMDAwMCwtMC4xMDAwMDApIgpmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiPgo8cGF0aCBkPSJNOTU3MCAxOTkwNCBjLTMwIC0yIC0xMzQgLTggLTIzMCAtMTQgLTExMzMgLTcxIC0yMjc2IC0zNTIgLTMzNTAKLTgyNSAtMzc4IC0xNjcgLTg1MyAtNDIwIC0xMjI1IC02NTIgLTE3OTkgLTExMjQgLTMxODUgLTI3ODIgLTM5NzcgLTQ3NTMKLTMzMiAtODI2IC01NTQgLTE3MzEgLTY0NyAtMjY0MCAtNDAgLTM4NCAtNDYgLTUxNyAtNDYgLTEwMTAgMCAtNTYzIDIwIC04NzQKODYgLTEzNTAgMzQ2IC0yNTAzIDE2NDUgLTQ3NzggMzYzOSAtNjM3NiAxMDA5IC04MDkgMjE3OCAtMTQxNyAzNDE1IC0xNzc4CjEyOTkgLTM3OCAyNjY5IC00ODQgNDAyNSAtMzEwIDE5MzkgMjQ4IDM3NjggMTA3OSA1MjU1IDIzODUgNTE3IDQ1NSA5OTMgOTcxCjE0MDYgMTUyNSA2NzYgOTA2IDExOTEgMTkxNSAxNTI0IDI5ODQgNTI4IDE3MDEgNTgzIDM1MzMgMTU5IDUyNzAgLTY1NiAyNjgzCi0yNDM4IDUwMDEgLTQ4NjkgNjMzNSAtMTI2MyA2OTMgLTI1OTIgMTA4MyAtNDA4MCAxMTk1IC0xMzYgMTEgLTk3NCAyMSAtMTA4NQoxNHogbTEwMTUgLTEyNjQgYzExODIgLTkyIDIyMjEgLTM3NSAzMjM1IC04ODEgNjgxIC0zNDAgMTI3NyAtNzQwIDE4NjggLTEyNTUKMTkwIC0xNjUgNjIyIC01OTcgNzg3IC03ODcgMTA5MCAtMTI1MiAxNzgyIC0yNzExIDIwNDUgLTQzMDYgODAgLTQ5MCAxMTEKLTg4MCAxMTEgLTE0MTEgLTEgLTEzMzkgLTI5MiAtMjU5MSAtODgxIC0zNzg1IC00MzggLTg4NyAtOTg4IC0xNjQ4IC0xNjk3Ci0yMzQ1IC0yMzUgLTIzMiAtMzM0IC0zMjIgLTU0OSAtNTAxIC0yMDA1IC0xNjY5IC00NjQ0IC0yMzM5IC03MjA2IC0xODI4Ci0xNjEzIDMyMSAtMzEyNSAxMTE5IC00MzE5IDIyNzcgLTE0NzIgMTQyNyAtMjM4NCAzMzA5IC0yNTg4IDUzMzcgLTU4IDU4MQotNTMgMTI3MCAxNSAxODUwIDI1NiAyMjAzIDEzNTggNDIyOCAzMDc5IDU2NjAgMTQzNCAxMTkzIDMxODkgMTg4MCA1MDcwIDE5ODUKMTg2IDEwIDg1NSA0IDEwMzAgLTEweiIvPgo8cGF0aCBkPSJNOTYwNSAxNzQxOSBjLTQ0NyAtMjQgLTkwNSAtODkgLTEzMzAgLTE5MSAtNzEgLTE3IC0xMzEgLTMyIC0xMzMKLTMzIC0yIC0yIDQxOCAtMTE2NyA5MzQgLTI1OTAgNTM4IC0xNDgzIDk0MSAtMjU4MSA5NDUgLTI1NzMgNCA3IDQyNCAxMTY3CjkzNCAyNTc4IDUxMCAxNDExIDkyOSAyNTY4IDkzMCAyNTcxIDUgOCAtMjI5IDY0IC00NTUgMTA5IC01NzUgMTE0IC0xMjMxIDE2MQotMTgyNSAxMjl6Ii8+CjxwYXRoIGQ9Ik02MTE5IDE2MzM5IGMtNTIzIC0zMjMgLTk4NSAtNjkyIC0xNDI5IC0xMTQ1IC0xNTYgLTE1OSAtNDQ4IC00ODYKLTQ3MiAtNTI4IC00IC03IDY4OSAtMTgxOCAxNTQwIC00MDI0IDg1MCAtMjIwNyAxNTQ5IC00MDA2IDE1NTMgLTQwMDAgNCA3CjIzNyA2MDkgNTE5IDEzMzggMjgyIDcyOSA1MzQgMTM4MiA1NjIgMTQ1MyBsNDkgMTI3IDE0OTEgLTIgMTQ5MCAtMyA1NTkKLTE0NDUgYzMwNyAtNzk1IDU2MiAtMTQ1MyA1NjcgLTE0NjQgNiAtMTMgNDE3IDEwNDUgMTU3MSA0MDQyIDk0MiAyNDQ4IDE1NjAKNDA2NiAxNTU1IDQwNzQgLTQgNyAtNDggNjAgLTk4IDExOCAtNDgzIDU1OCAtMTA3NCAxMDYyIC0xNjk5IDE0NTAgLTgyIDUwCi0xNTAgOTAgLTE1MiA4OCAtMiAtMiAtNDkxIC0xMzQ2IC0xMDg3IC0yOTg4IGwtMTA4MyAtMjk4NSAtMTUzOSAwIC0xNTM5IDAKLTEwODggMjk5NSBjLTU5NyAxNjQ3IC0xMDkxIDI5OTYgLTEwOTYgMjk5NyAtNSAyIC04MyAtNDIgLTE3NCAtOTh6Ii8+CjxwYXRoIGQ9Ik0xNTE3NyA4MDM3IGMtOTY2IC0yNTIwIC0xNzU3IC00NTg2IC0xNzU3IC00NTkxIDAgLTE3IDM3NyAyMDAgNjA2CjM0OSA2MTYgNDAxIDEyMTcgOTQxIDE2OTggMTUyNSA4NjcgMTA1MSAxNDQwIDIzNzAgMTYxNiAzNzIwIDcwIDU0MyA4MCAxMjA5CjI0IDE3NTAgLTQ4IDQ3MSAtMTQ3IDk2NCAtMjgzIDE0MTEgLTU1IDE4MCAtMTMwIDM5OSAtMTQxIDQxMiAtNCA0IC03OTcKLTIwNTUgLTE3NjMgLTQ1NzZ6Ii8+CjxwYXRoIGQ9Ik0yOTI2IDEyMjc4IGMtMzY1IC0xMTM2IC00NTAgLTIzMzAgLTI1MCAtMzUxMyAzMDAgLTE3NzQgMTI2MiAtMzQwNAoyNjc5IC00NTM2IDE4MyAtMTQ3IDMzOSAtMjU5IDU1OSAtNDA0IDE4OCAtMTI0IDQ5NiAtMzA5IDUwMyAtMzAxIDUgNSAtMzQyMQo4OTI2IC0zNDI4IDg5MjYgLTQgMCAtMzIgLTc4IC02MyAtMTcyeiIvPgo8cGF0aCBkPSJNODk2OCA1NDg2IGMtOTQ0IC0yNDQ3IC05NTggLTI0ODQgLTk1OCAtMjU1MyAwIC02NSAyIC03MSAyMyAtNzcKNDU3IC0xMjggOTcyIC0yMTMgMTQ5MiAtMjQ2IDIwMyAtMTMgNzM0IC0xMyA5MzAgMCAzMTIgMjEgNjMzIDYxIDkyNiAxMTUgMTU3CjI4IDQ1MyA5NSA0NjkgMTA1IDEwIDYgMTAgMjcgMCA5NiAtMTEgODAgLTExMCAzNDEgLTk1NSAyNTM0IC01MTggMTM0NSAtOTQ5CjI0NjAgLTk1NiAyNDc3IC0xNCAzMiAtMzEgLTExIC05NzEgLTI0NTF6Ii8+CjwvZz4KPC9zdmc+Cg==';
                 //let dec = atob(enc);
@@ -134,13 +137,10 @@ class Logeo {
 
                 //let div = document.getElementById('svgdiv');
                 //div.innerHTML = dec;
-
-                localRef.initializeThreejs();
-
 //TESTING
 
                 let base64data = reader.result.substring(reader.result.indexOf(",") + 1);
- /**
+
                 fetch('https://api.convertio.co/convert',
                     {
                         method: 'POST',
@@ -156,7 +156,7 @@ class Logeo {
                         })
                     }).then(response => response.json())
                     .then(data => localRef.requestStatus(data));
-**/
+
             };
         }
     }
@@ -166,7 +166,7 @@ class Logeo {
 
         if (debug) console.log(jobresponse);
 
-        if (debug) console.log("job response code: " + jobresponse.code);
+        console.log("error: " + jobresponse.code + " " + jobresponse.status);
 
         if (jobresponse.code === 200) {
             // request job status
@@ -177,7 +177,7 @@ class Logeo {
                 .then(data => localRef.requestContent(data, jobresponse));
         } else {
             // TODO: show error on screen
-            console.log("error: " + jobresponse.code);
+            console.log("There was an error with this job request");
 
             //wait and try again
 
@@ -188,9 +188,8 @@ class Logeo {
     requestContent(statusresponse, jobresponse) {
         let localRef = this;
 
-        if (debug) window.console.log("status response code: " + statusresponse.code);
-
-        if (debug) window.console.log(statusresponse);
+        if (debug) window.console.log("status response code: " + statusresponse.code  + " " + statusresponse.status);
+        console.log("error: " + jobresponse.code + " " + jobresponse.status);
 
         if (statusresponse.code === 200 && statusresponse.data.step === "finish" && statusresponse.data.step_percent === 100) {
             // success
@@ -203,10 +202,17 @@ class Logeo {
                 }).then(response => response.json())
                 .then(data => localRef.handleContent(data, jobresponse));
         } else {
-            // wait and check status again
-            if(debug) console.log("waiting and checking status again.")
 
-            setTimeout(localRef.requestStatus(jobresponse), 4000);
+            if (statusresponse.code !== 200)
+            {
+                localRef.errorHandler("There was an error processing this file. Terminating job.");
+                clearTimeout(localRef.timerId);
+            } else {
+                // wait and check status again
+                if (debug) console.log("waiting and checking status again.")
+
+                setTimeout(localRef.requestStatus(jobresponse), 8000);
+            }
         }
     }
 
@@ -215,17 +221,20 @@ class Logeo {
 
         if (debug) console.log(contentresponse);
 
-        if (debug) console.log("content response code: " + contentresponse.code);
+        if (debug) console.log("content response code: " + contentresponse.code  + " " + contentresponse.status);
 
         if (contentresponse.code === 200) {
 
             //let enc = 'PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMjAwMC4wMDAwMDBwdCIgaGVpZ2h0PSIyMDAwLjAwMDAwMHB0IiB2aWV3Qm94PSIwIDAgMjAwMC4wMDAwMDAgMjAwMC4wMDAwMDAiCiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0Ij4KCjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDIwMDAuMDAwMDAwKSBzY2FsZSgwLjEwMDAwMCwtMC4xMDAwMDApIgpmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiPgo8cGF0aCBkPSJNOTU3MCAxOTkwNCBjLTMwIC0yIC0xMzQgLTggLTIzMCAtMTQgLTExMzMgLTcxIC0yMjc2IC0zNTIgLTMzNTAKLTgyNSAtMzc4IC0xNjcgLTg1MyAtNDIwIC0xMjI1IC02NTIgLTE3OTkgLTExMjQgLTMxODUgLTI3ODIgLTM5NzcgLTQ3NTMKLTMzMiAtODI2IC01NTQgLTE3MzEgLTY0NyAtMjY0MCAtNDAgLTM4NCAtNDYgLTUxNyAtNDYgLTEwMTAgMCAtNTYzIDIwIC04NzQKODYgLTEzNTAgMzQ2IC0yNTAzIDE2NDUgLTQ3NzggMzYzOSAtNjM3NiAxMDA5IC04MDkgMjE3OCAtMTQxNyAzNDE1IC0xNzc4CjEyOTkgLTM3OCAyNjY5IC00ODQgNDAyNSAtMzEwIDE5MzkgMjQ4IDM3NjggMTA3OSA1MjU1IDIzODUgNTE3IDQ1NSA5OTMgOTcxCjE0MDYgMTUyNSA2NzYgOTA2IDExOTEgMTkxNSAxNTI0IDI5ODQgNTI4IDE3MDEgNTgzIDM1MzMgMTU5IDUyNzAgLTY1NiAyNjgzCi0yNDM4IDUwMDEgLTQ4NjkgNjMzNSAtMTI2MyA2OTMgLTI1OTIgMTA4MyAtNDA4MCAxMTk1IC0xMzYgMTEgLTk3NCAyMSAtMTA4NQoxNHogbTEwMTUgLTEyNjQgYzExODIgLTkyIDIyMjEgLTM3NSAzMjM1IC04ODEgNjgxIC0zNDAgMTI3NyAtNzQwIDE4NjggLTEyNTUKMTkwIC0xNjUgNjIyIC01OTcgNzg3IC03ODcgMTA5MCAtMTI1MiAxNzgyIC0yNzExIDIwNDUgLTQzMDYgODAgLTQ5MCAxMTEKLTg4MCAxMTEgLTE0MTEgLTEgLTEzMzkgLTI5MiAtMjU5MSAtODgxIC0zNzg1IC00MzggLTg4NyAtOTg4IC0xNjQ4IC0xNjk3Ci0yMzQ1IC0yMzUgLTIzMiAtMzM0IC0zMjIgLTU0OSAtNTAxIC0yMDA1IC0xNjY5IC00NjQ0IC0yMzM5IC03MjA2IC0xODI4Ci0xNjEzIDMyMSAtMzEyNSAxMTE5IC00MzE5IDIyNzcgLTE0NzIgMTQyNyAtMjM4NCAzMzA5IC0yNTg4IDUzMzcgLTU4IDU4MQotNTMgMTI3MCAxNSAxODUwIDI1NiAyMjAzIDEzNTggNDIyOCAzMDc5IDU2NjAgMTQzNCAxMTkzIDMxODkgMTg4MCA1MDcwIDE5ODUKMTg2IDEwIDg1NSA0IDEwMzAgLTEweiIvPgo8cGF0aCBkPSJNOTYwNSAxNzQxOSBjLTQ0NyAtMjQgLTkwNSAtODkgLTEzMzAgLTE5MSAtNzEgLTE3IC0xMzEgLTMyIC0xMzMKLTMzIC0yIC0yIDQxOCAtMTE2NyA5MzQgLTI1OTAgNTM4IC0xNDgzIDk0MSAtMjU4MSA5NDUgLTI1NzMgNCA3IDQyNCAxMTY3CjkzNCAyNTc4IDUxMCAxNDExIDkyOSAyNTY4IDkzMCAyNTcxIDUgOCAtMjI5IDY0IC00NTUgMTA5IC01NzUgMTE0IC0xMjMxIDE2MQotMTgyNSAxMjl6Ii8+CjxwYXRoIGQ9Ik02MTE5IDE2MzM5IGMtNTIzIC0zMjMgLTk4NSAtNjkyIC0xNDI5IC0xMTQ1IC0xNTYgLTE1OSAtNDQ4IC00ODYKLTQ3MiAtNTI4IC00IC03IDY4OSAtMTgxOCAxNTQwIC00MDI0IDg1MCAtMjIwNyAxNTQ5IC00MDA2IDE1NTMgLTQwMDAgNCA3CjIzNyA2MDkgNTE5IDEzMzggMjgyIDcyOSA1MzQgMTM4MiA1NjIgMTQ1MyBsNDkgMTI3IDE0OTEgLTIgMTQ5MCAtMyA1NTkKLTE0NDUgYzMwNyAtNzk1IDU2MiAtMTQ1MyA1NjcgLTE0NjQgNiAtMTMgNDE3IDEwNDUgMTU3MSA0MDQyIDk0MiAyNDQ4IDE1NjAKNDA2NiAxNTU1IDQwNzQgLTQgNyAtNDggNjAgLTk4IDExOCAtNDgzIDU1OCAtMTA3NCAxMDYyIC0xNjk5IDE0NTAgLTgyIDUwCi0xNTAgOTAgLTE1MiA4OCAtMiAtMiAtNDkxIC0xMzQ2IC0xMDg3IC0yOTg4IGwtMTA4MyAtMjk4NSAtMTUzOSAwIC0xNTM5IDAKLTEwODggMjk5NSBjLTU5NyAxNjQ3IC0xMDkxIDI5OTYgLTEwOTYgMjk5NyAtNSAyIC04MyAtNDIgLTE3NCAtOTh6Ii8+CjxwYXRoIGQ9Ik0xNTE3NyA4MDM3IGMtOTY2IC0yNTIwIC0xNzU3IC00NTg2IC0xNzU3IC00NTkxIDAgLTE3IDM3NyAyMDAgNjA2CjM0OSA2MTYgNDAxIDEyMTcgOTQxIDE2OTggMTUyNSA4NjcgMTA1MSAxNDQwIDIzNzAgMTYxNiAzNzIwIDcwIDU0MyA4MCAxMjA5CjI0IDE3NTAgLTQ4IDQ3MSAtMTQ3IDk2NCAtMjgzIDE0MTEgLTU1IDE4MCAtMTMwIDM5OSAtMTQxIDQxMiAtNCA0IC03OTcKLTIwNTUgLTE3NjMgLTQ1NzZ6Ii8+CjxwYXRoIGQ9Ik0yOTI2IDEyMjc4IGMtMzY1IC0xMTM2IC00NTAgLTIzMzAgLTI1MCAtMzUxMyAzMDAgLTE3NzQgMTI2MiAtMzQwNAoyNjc5IC00NTM2IDE4MyAtMTQ3IDMzOSAtMjU5IDU1OSAtNDA0IDE4OCAtMTI0IDQ5NiAtMzA5IDUwMyAtMzAxIDUgNSAtMzQyMQo4OTI2IC0zNDI4IDg5MjYgLTQgMCAtMzIgLTc4IC02MyAtMTcyeiIvPgo8cGF0aCBkPSJNODk2OCA1NDg2IGMtOTQ0IC0yNDQ3IC05NTggLTI0ODQgLTk1OCAtMjU1MyAwIC02NSAyIC03MSAyMyAtNzcKNDU3IC0xMjggOTcyIC0yMTMgMTQ5MiAtMjQ2IDIwMyAtMTMgNzM0IC0xMyA5MzAgMCAzMTIgMjEgNjMzIDYxIDkyNiAxMTUgMTU3CjI4IDQ1MyA5NSA0NjkgMTA1IDEwIDYgMTAgMjcgMCA5NiAtMTEgODAgLTExMCAzNDEgLTk1NSAyNTM0IC01MTggMTM0NSAtOTQ5CjI0NjAgLTk1NiAyNDc3IC0xNCAzMiAtMzEgLTExIC05NzEgLTI0NTF6Ii8+CjwvZz4KPC9zdmc+Cg==';
-            let dec = atob(contentresponse.data.content);
-            console.log(dec)
+            //let dec = atob(contentresponse.data.content);
+            //console.log(dec)
 
-            document.getElementById('svgdiv').innerHTML = dec;
+            // write as dataURI in HTML element...
+            let dataURI = "data:text/plain;base64," + contentresponse.data.content;
+            document.getElementById('hidden').innerHTML = dataURI;
 
-            // TODO: display extruded SVG with Three.js
+            // hide "loading" animation
+            document.getElementById('overlay').style.display = 'none';
 
         } else {
             // TODO: show user an error message!

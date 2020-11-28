@@ -69,6 +69,25 @@ body {
 
 }
 
+#overlay {
+    display: block;
+    text-align: center;
+
+    color: rgba(83, 112, 113, 0.8);
+    font: 20px Arial, Sans-Serif;
+    height: 100px;
+
+    white-space: nowrap;
+
+    padding-top: 430px;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(80px, -0%);
+
+    z-index: +1;
+}
+
 .inputbutton {
     font: 18px Arial, Sans-Serif;
 
@@ -99,4 +118,10 @@ body {
     overflow: hidden;
     position: absolute;
     z-index: -1;
+}
+
+#hidden {
+    display: none;
+
+    opacity: 80%;
 }

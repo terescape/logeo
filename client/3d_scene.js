@@ -321,12 +321,19 @@ d3threeD( $d3g );
 /// Part from g0v/twgeojson
 /// Graphic Engine and Geo Data Init Functions
 
+const LOGO_WIDTH = 300;
+
+var SVGtimer;
+
 const addGeoObject = function ( group, svgObject ) {
 
     const paths = svgObject.paths;
     const depths = svgObject.depths;
     const colors = svgObject.colors;
     const center = svgObject.center;
+
+    let bounds = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+    let meshlist = [];
 
     for ( let i = 0; i < paths.length; i ++ ) {
 
@@ -348,22 +355,47 @@ const addGeoObject = function ( group, svgObject ) {
                 bevelEnabled: false
             } );
 
+            shape3d.computeBoundingBox();
+            if (shape3d.boundingBox.max.x > bounds.max.x) bounds.max.x = shape3d.boundingBox.max.x;
+            if (shape3d.boundingBox.max.y > bounds.max.y) bounds.max.y = shape3d.boundingBox.max.y;
+            if (shape3d.boundingBox.max.z > bounds.max.z) bounds.max.z = shape3d.boundingBox.max.z;
+
+            if (shape3d.boundingBox.min.x < bounds.min.x) bounds.min.x = shape3d.boundingBox.min.x;
+            if (shape3d.boundingBox.min.y < bounds.min.y) bounds.min.y = shape3d.boundingBox.min.y;
+            if (shape3d.boundingBox.min.z < bounds.min.z) bounds.min.z = shape3d.boundingBox.min.z;
+
+
+
             const mesh = new THREE.Mesh( shape3d, material );
             mesh.rotation.x = Math.PI;
+            mesh.rotation.y = Math.PI/4;
             mesh.translateZ( - depth - 1 );
-            mesh.translateX( - 1000 );
-            mesh.translateY( - 1000 );
+            // TODO
+            //mesh.translateX( - 1000 );
+            //mesh.translateY( - 1000 );
             //mesh.translateX( - center.x );
             //mesh.translateY( - center.y );
 
+            meshlist.push(mesh);
             group.add( mesh );
-            //let meshcenter = mesh.geometry.center();
-
-
         }
-
     }
 
+    let offsetx = (bounds.max.x - bounds.min.x) / 2.0;
+    let offsety = (bounds.max.y - bounds.min.y) / 2.0;
+    for ( let j = 0; j < meshlist.length; j ++ ) {
+        meshlist[ j ].translateX(- offsetx);
+        meshlist[ j ].translateY(- offsety);
+    }
+
+    let maxdist = 0;
+    if (Math.abs(offsetx) >= Math.abs(offsety))
+        maxdist = offsetx * 2;
+    else
+        maxdist = offsety * 2;
+
+    camera.position.set( -maxdist, maxdist / 4, maxdist * 1.75);
+    camera.lookAt( 0, 0, 0 );
 };
 
 let renderer, scene, camera;    //stats,
@@ -377,7 +409,7 @@ function init() {
 
     const container = document.getElementById( 'container' );
 
-    const LOGO_WIDTH = 300;
+
 
     //
 
@@ -387,7 +419,7 @@ function init() {
     //
 
     camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 8000 );
-    camera.position.set( 0, 0, 5000 );
+    camera.position.set( 0, 0, 2500 );
 
     //
 
@@ -400,7 +432,7 @@ function init() {
     directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
     scene.add( directionalLight );
 
-    const ambientLight = new THREE.AmbientLight( 0xcccccc, 0.2 );
+    const ambientLight = new THREE.AmbientLight( 0xdddddd, 0.4 );
     scene.add( ambientLight );
 
     //
@@ -414,7 +446,7 @@ function init() {
     //const obj = initSVGObject();
     //addGeoObject( group, obj );
 
-    loadSVGObject(group);
+    SVGtimer = setInterval(loadSVGObject, 3000, group);
 
 
     renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -438,13 +470,22 @@ function init() {
 }
 
 function loadSVGObject(group) {
-    let url = "../svg_test.svg";
+    //let url = "../svg_test.svg";
     let depth = 90;
     let fill = 0xff0000;
 
+    console.log("checking for SVG data...");
+
+    let SVGsrc = document.getElementById("hidden").innerText;
+    if (SVGsrc.length === 0)
+        return;
+    else
+        clearInterval(SVGtimer);
+
+
     const loader = new SVGLoader();
 
-    loader.load( url, function ( data ) {
+    loader.load( SVGsrc, function ( data ) {
 
         console.log("attempting to load svg");
 
@@ -462,82 +503,6 @@ function loadSVGObject(group) {
         addGeoObject(group, data);
 
 
-
-        /**
-        const paths = data.paths;
-
-        const group = new THREE.Group();
-        group.scale.multiplyScalar( 0.25 );
-        group.position.x = - 70;
-        group.position.y = 70;
-        group.scale.y *= - 1;
-
-        for ( let i = 0; i < paths.length; i ++ ) {
-
-            const path = paths[ i ];
-
-            const fillColor = path.userData.style.fill;
-            if ( guiData.drawFillShapes && fillColor !== undefined && fillColor !== 'none' ) {
-
-                const material = new THREE.MeshBasicMaterial( {
-                    color: new THREE.Color().setStyle( fillColor ),
-                    opacity: path.userData.style.fillOpacity,
-                    transparent: path.userData.style.fillOpacity < 1,
-                    side: THREE.DoubleSide,
-                    depthWrite: false,
-                    wireframe: guiData.fillShapesWireframe
-                } );
-
-                const shapes = path.toShapes( true );
-
-                for ( let j = 0; j < shapes.length; j ++ ) {
-
-                    const shape = shapes[ j ];
-
-                    const geometry = new THREE.ShapeBufferGeometry( shape );
-                    const mesh = new THREE.Mesh( geometry, material );
-
-                    group.add( mesh );
-
-                }
-
-            }
-
-            const strokeColor = path.userData.style.stroke;
-
-            if ( guiData.drawStrokes && strokeColor !== undefined && strokeColor !== 'none' ) {
-
-                const material = new THREE.MeshBasicMaterial( {
-                    color: new THREE.Color().setStyle( strokeColor ),
-                    opacity: path.userData.style.strokeOpacity,
-                    transparent: path.userData.style.strokeOpacity < 1,
-                    side: THREE.DoubleSide,
-                    depthWrite: false,
-                    wireframe: guiData.strokesWireframe
-                } );
-
-                for ( let j = 0, jl = path.subPaths.length; j < jl; j ++ ) {
-
-                    const subPath = path.subPaths[ j ];
-
-                    const geometry = SVGLoader.pointsToStroke( subPath.getPoints(), path.userData.style );
-
-                    if ( geometry ) {
-
-                        const mesh = new THREE.Mesh( geometry, material );
-
-                        group.add( mesh );
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        scene.add( group );
-    **/
 
     });
 }

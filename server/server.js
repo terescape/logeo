@@ -46,8 +46,11 @@ const handleRequest = function (request, response) {
         response.writeHead(200, { 'Content-Type': 'text/css' });
         response.end(fs.readFileSync('client' + request.url));
     } else if (request.url === '/decal.png') {
-        response.writeHead(200, { 'Content-Type': 'image/jpg' });
+        response.writeHead(200, { 'Content-Type': 'image/jpeg' });
         response.end(fs.readFileSync('img/logeo_logo.jpg'));
+    } else if (request.url.endsWith('.gif')) {
+        response.writeHead(200, { 'Content-Type': 'image/gif' });
+        response.end(fs.readFileSync('img' + request.url));
     } else if (request.url.endsWith('.png')) {
         response.writeHead(200, { 'Content-Type': 'image/png' });
         response.end(fs.readFileSync('img' + request.url));
@@ -104,7 +107,7 @@ wss.on('connection', function (ws, request, client) {
     ws.on('error', function (event) {
         console.log('WebSocket error: ', event);
 
-        () => ws.terminate();
+        //() => ws.terminate();
     });
 });
 

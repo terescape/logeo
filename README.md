@@ -9,7 +9,7 @@ Short video: (2:07)
 https://youtu.be/jOzw0QZR0jU
 
 Longer video: (7:53)
-https://www.youtube.com/watch?v=Sot3nrTvoiE
+https://youtu.be/Sot3nrTvoiE
   
   Winning final project for 2020 course on Graph Neural Networks (GNN's)
   

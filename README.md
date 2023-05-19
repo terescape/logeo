@@ -1,4 +1,5 @@
 # logeo
+<img src="img/decal.png">
 
 <b>Upload your logo and watch as it is automatically transformed into a 3D model and then rigged and animated using AI.</b>
 <p>
